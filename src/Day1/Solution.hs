@@ -7,7 +7,7 @@ input = map read . lines <$> readFile "input/Day1/input.txt"
 -- Return the number of elements in a list greater than their predecessor.
 increases :: (Ord a) => [a] -> Integer
 increases [] = 0
-increases (_:[]) = 0
+increases [_] = 0
 increases (x1:x2:xs)
     | x2 > x1   = increases (x2:xs) + 1
     | otherwise = increases (x2:xs)
@@ -15,9 +15,9 @@ increases (x1:x2:xs)
 -- Group a list into 3-tuples of adjacent elements.
 group :: [a] -> [(a, a, a)]
 group [] = []
-group (_:[]) = []
-group (_:_:[]) = []
-group (x1:x2:x3:xs) = (x1, x2, x3) : (group $ (x2:x3:xs))
+group [_] = []
+group [_,_] = []
+group (x1:x2:x3:xs) = (x1, x2, x3) : group (x2:x3:xs)
 
 -- Solve Part 1.
 solve1 :: [Integer] -> Integer
