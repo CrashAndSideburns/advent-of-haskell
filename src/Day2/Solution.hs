@@ -1,12 +1,12 @@
-module Day2.Solution where
+module Main (main) where
 
 import Data.List
 
--- The actual puzzle input.
+-- Puzzle input.
 input :: IO [Command]
-input = map parseCommand . lines <$> readFile "input.txt"
+input = map parseCommand . lines <$> readFile "input/Day2/input.txt"
 
--- Parse a String as a Command.
+-- Parse input.
 parseCommand :: String -> Command
 parseCommand str
     | "forward" `isPrefixOf` str = Forward $ read $ drop 8 str
@@ -29,20 +29,14 @@ applyCommands :: (Submarine -> Command -> Submarine) -> [Command] -> Integer
 applyCommands f = resolve . foldl f (Submarine 0 0 0)
     where resolve (Submarine h d _) = h * d
 
--- Get the result of applying [Command] to a Submarine according to:
--- Forward n increases the submarine's horizonal position by n.
--- Up n decreases the submarine's depth by n.
--- Down n increases the submarine's depth by n.
+-- Solve Part 1.
 solve1 :: [Command] -> Integer
 solve1 = applyCommands rule
     where rule (Submarine h d _) (Forward n) = Submarine (h+n) d    0
           rule (Submarine h d _) (Up n)      = Submarine  h   (d-n) 0
           rule (Submarine h d _) (Down n)    = Submarine  h   (d+n) 0
 
--- Get the result of applying [Command] to a Submarine according to:
--- Forward n increases the submarine's horizonal position by n and its depth by n*aim.
--- Up n decreases the submarine's aim by n.
--- Down n increases the submarine's aim by n.
+-- Solve Part 2.
 solve2 :: [Command] -> Integer
 solve2 = applyCommands rule
     where rule (Submarine h d a) (Forward n) = Submarine (h+n) (d+n*a) a

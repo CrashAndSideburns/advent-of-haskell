@@ -1,8 +1,8 @@
-module Day1.Solution where
+module Main (main) where
 
--- The actual puzzle input.
+-- Puzzle input.
 input :: IO [Integer]
-input = map read . lines <$> readFile "input.txt"
+input = map read . lines <$> readFile "input/Day1/input.txt"
 
 -- Return the number of elements in a list greater than their predecessor.
 increases :: (Ord a) => [a] -> Integer
@@ -19,11 +19,11 @@ group (_:[]) = []
 group (_:_:[]) = []
 group (x1:x2:x3:xs) = (x1, x2, x3) : (group $ (x2:x3:xs))
 
--- Solve part 1.
+-- Solve Part 1.
 solve1 :: [Integer] -> Integer
 solve1 = increases
 
--- Solve part 2.
+-- Solve Part 2.
 solve2 :: [Integer] -> Integer
 solve2 = increases . map (\(x, y, z) -> x + y + z) . group
 
