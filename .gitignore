@@ -21,3 +21,6 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
+
+# A shell script to fetch inputs. It contains a cookie, so never commit it.
+input.sh
