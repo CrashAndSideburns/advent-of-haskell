@@ -19,7 +19,6 @@ executable Day2
   main-is:             Solution.hs
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-
 executable Day3
   hs-source-dirs:      src/Day3
   main-is:             Solution.hs
@@ -30,7 +29,8 @@ executable Day4
   hs-source-dirs:      src/Day4
   main-is:             Solution.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5,
+                       split
 
 executable Day5
   hs-source-dirs:      src/Day5
