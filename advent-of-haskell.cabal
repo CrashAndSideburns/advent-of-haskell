@@ -51,7 +51,8 @@ executable Day7
   hs-source-dirs:      src/Day7
   main-is:             Solution.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5,
+                       split
 
 executable Day8
   hs-source-dirs:      src/Day8
